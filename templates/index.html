@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cloud Security Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <h1>☁️ Cloud Security Dashboard</h1>
+    <div class="header-actions">
+        <button onclick="runScan()">Run Scan</button>
+        <button id="themeToggle" class="theme-btn" onclick="toggleTheme()">🌙</button>
+    </div>
+</div>
+
+<!-- STATUS + LOADER -->
+<div id="lastScan">Last scan: --</div>
+<div id="loader" style="display:none;">Running scan...</div>
+
+<!-- REPORT SELECTOR -->
+<div class="top-bar">
+    <div>
+        <h3>📁 Reports (Current & History)</h3>
+
+        <!-- THIS DROPDOWN WILL BE UPDATED DYNAMICALLY -->
+        <select id="reportDropdown"></select>
+    </div>
+
+    <button onclick="downloadReport()">⬇️ Download Report</button>
+</div>
+
+<!-- SUMMARY CARDS -->
+<div class="cards">
+    <div class="card critical">Critical: <span id="criticalCount">0</span></div>
+    <div class="card high">High: <span id="highCount">0</span></div>
+    <div class="card medium">Medium: <span id="mediumCount">0</span></div>
+</div>
+
+<!-- CHART -->
+<div class="chart-container">
+    <canvas id="chart"></canvas>
+</div>
+
+<!-- FILTER BUTTONS -->
+<div class="filters">
+    <button onclick="filterTable('ALL')">All</button>
+    <button onclick="filterTable('CRITICAL')">Critical</button>
+    <button onclick="filterTable('HIGH')">High</button>
+    <button onclick="filterTable('MEDIUM')">Medium</button>
+
+    <select id="typeFilter" onchange="filterByType(this.value)">
+        <option value="ALL">All Types</option>
+    </select>
+</div>
+
+<!-- TABLE -->
+<table id="table">
+    <thead>
+        <tr>
+            <th>Resource</th>
+            <th>Type</th>
+            <th>Issue</th>
+            <th>Impact</th>
+            <th>Severity</th>
+        </tr>
+    </thead>
+
+    <tbody id="tableBody">
+        {% for item in data %}
+        <tr data-severity="{{item.severity}}" data-type="{{item.type}}" data-issue="{{item.issue}}" data-impact="{{item.impact}}" data-resource="{{item.resource}}">
+            <td>{{item.resource}}</td>
+            <td>{{item.type}}</td>
+            <td>
+                {{item.issue}}
+                <button class="explain-btn" onclick="onExplain(this)">Explain</button>
+            </td>
+            <td class="impact-cell">{{item.impact}}</td>
+            <td>
+                <span class="badge {{item.severity | lower}}">
+                    {{item.severity}}
+                </span>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- EXPLAIN MODAL -->
+<div id="explainModal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeExplain()">✖</button>
+        <div id="explainBody">Loading...</div>
+    </div>
+</div>
+
+<script src="/static/script.js"></script>
+
+<script>
+/* ======================
+   INITIAL CHART SETUP
+====================== */
+const chart = new Chart(document.getElementById('chart'), {
+    type: 'pie',
+    data: {
+        labels: ['Critical', 'High', 'Medium'],
+        datasets: [{
+            data: [{{critical}}, {{high}}, {{medium}}],
+            backgroundColor: [
+                '#ff4d4f', // CRITICAL (red)
+                '#fa8c16', // HIGH (orange)
+                '#fadb14'  // MEDIUM (yellow)
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        plugins: {
+            legend: {
+                position: 'bottom'
+            }
+        }
+    }
+});
+/* ======================
+   INITIAL DATA LOAD
+====================== */
+document.addEventListener("DOMContentLoaded", () => {
+    initTheme();
+    updateLastScan();
+
+    // populate dropdown from backend initially
+    const reports = {{ reports|tojson }};
+    const initialData = {{ data|tojson }};
+    const dropdown = document.getElementById("reportDropdown");
+
+    reports.forEach(r => {
+        const option = document.createElement("option");
+        option.value = r[0];
+        option.text = r[1];
+        dropdown.appendChild(option);
+    });
+
+    dropdown.value = "{{selected}}";
+    populateTypeFilter(initialData);
+});
+
+/* ======================
+   DOWNLOAD BUTTON
+====================== */
+function downloadReport() {
+    const file = document.getElementById("reportDropdown").value;
+    if (file) {
+        window.location.href = "/download/" + file;
+    }
+}
+</script>
+
+</body>
+</html>

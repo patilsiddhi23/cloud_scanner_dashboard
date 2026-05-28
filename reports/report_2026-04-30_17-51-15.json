@@ -1,0 +1,156 @@
+[
+    {
+        "resource": "aws-logs-851725378208-us-west-2",
+        "type": "S3 Bucket",
+        "issue": "Versioning Disabled",
+        "severity": "MEDIUM",
+        "impact": "Deleted/modified objects cannot be recovered"
+    },
+    {
+        "resource": "public-acl-bucket-demo-12",
+        "type": "S3 Bucket",
+        "issue": "Public Access via ACL",
+        "severity": "HIGH",
+        "impact": "Anyone on the internet can read bucket contents"
+    },
+    {
+        "resource": "public-acl-bucket-demo-12",
+        "type": "S3 Bucket",
+        "issue": "Versioning Disabled",
+        "severity": "MEDIUM",
+        "impact": "Deleted/modified objects cannot be recovered"
+    },
+    {
+        "resource": "public-policy-bucket-demo-12",
+        "type": "S3 Bucket",
+        "issue": "Public Access via Bucket Policy",
+        "severity": "HIGH",
+        "impact": "Bucket data is publicly accessible due to open policy"
+    },
+    {
+        "resource": "public-policy-bucket-demo-12",
+        "type": "S3 Bucket",
+        "issue": "Versioning Disabled",
+        "severity": "MEDIUM",
+        "impact": "Deleted/modified objects cannot be recovered"
+    },
+    {
+        "resource": "sagemaker-studio-851725378208-z80uxw5jjce",
+        "type": "S3 Bucket",
+        "issue": "Versioning Disabled",
+        "severity": "MEDIUM",
+        "impact": "Deleted/modified objects cannot be recovered"
+    },
+    {
+        "resource": "sagemaker-us-west-2-851725378208",
+        "type": "S3 Bucket",
+        "issue": "Versioning Disabled",
+        "severity": "MEDIUM",
+        "impact": "Deleted/modified objects cannot be recovered"
+    },
+    {
+        "resource": "AmazonSageMakerServiceCatalogProductsUseRole-20250402T153182",
+        "type": "IAM Policy",
+        "issue": "Overly Permissive Managed Policy",
+        "severity": "HIGH",
+        "impact": "Grants full access to all actions/resources"
+    },
+    {
+        "resource": "AmazonSageMakerServiceCatalogProductsUseRole-20250402T153182",
+        "type": "IAM Policy",
+        "issue": "Overly Permissive Managed Policy",
+        "severity": "HIGH",
+        "impact": "Grants full access to all actions/resources"
+    },
+    {
+        "resource": "AmazonSageMakerServiceCatalogProductsUseRole-20250402T153182",
+        "type": "IAM Policy",
+        "issue": "Overly Permissive Managed Policy",
+        "severity": "HIGH",
+        "impact": "Grants full access to all actions/resources"
+    },
+    {
+        "resource": "AmazonSageMakerServiceCatalogProductsUseRole-20250402T153182",
+        "type": "IAM Policy",
+        "issue": "Overly Permissive Managed Policy",
+        "severity": "HIGH",
+        "impact": "Grants full access to all actions/resources"
+    },
+    {
+        "resource": "PartialWildcardPolicy",
+        "type": "IAM Policy",
+        "issue": "Overly Permissive Managed Policy",
+        "severity": "HIGH",
+        "impact": "Grants full access to all actions/resources"
+    },
+    {
+        "resource": "AdminLikePolicy",
+        "type": "IAM Policy",
+        "issue": "Overly Permissive Managed Policy",
+        "severity": "HIGH",
+        "impact": "Grants full access to all actions/resources"
+    },
+    {
+        "resource": "open-ssh-sg-demo (sg-0724bb3489fdec9ed) [us-west-2]",
+        "type": "Open Network Port",
+        "issue": "Critical port 22 open to world",
+        "severity": "CRITICAL",
+        "impact": "High risk - immediate remediation required"
+    },
+    {
+        "resource": "open-ssh-sg-demo (sg-0724bb3489fdec9ed) [us-west-2]",
+        "type": "Open Network Port",
+        "issue": "Port 22-22 open to world",
+        "severity": "HIGH",
+        "impact": "Potential exposure to unauthorized access"
+    },
+    {
+        "resource": "open-ssh-sg-demo (sg-0724bb3489fdec9ed) [us-west-2]",
+        "type": "Weak Security Rule",
+        "issue": "Weak IP range 0.0.0.0/0",
+        "severity": "MEDIUM",
+        "impact": "Security improvement recommended"
+    },
+    {
+        "resource": "default (sg-078c6a3bcf2424816) [us-west-2]",
+        "type": "Open Network Port",
+        "issue": "Critical port 22 open to world",
+        "severity": "CRITICAL",
+        "impact": "High risk - immediate remediation required"
+    },
+    {
+        "resource": "default (sg-078c6a3bcf2424816) [us-west-2]",
+        "type": "Open Network Port",
+        "issue": "Port 22-22 open to world",
+        "severity": "HIGH",
+        "impact": "Potential exposure to unauthorized access"
+    },
+    {
+        "resource": "default (sg-078c6a3bcf2424816) [us-west-2]",
+        "type": "Weak Security Rule",
+        "issue": "Weak IP range 0.0.0.0/0",
+        "severity": "MEDIUM",
+        "impact": "Security improvement recommended"
+    },
+    {
+        "resource": "all-ports-open-sg (sg-0e703468b7e0b0874) [us-west-2]",
+        "type": "Weak Security Rule",
+        "issue": "All ports open",
+        "severity": "CRITICAL",
+        "impact": "High risk - immediate remediation required"
+    },
+    {
+        "resource": "all-ports-open-sg (sg-0e703468b7e0b0874) [us-west-2]",
+        "type": "Open Network Port",
+        "issue": "Port 0-65535 open to world",
+        "severity": "HIGH",
+        "impact": "Potential exposure to unauthorized access"
+    },
+    {
+        "resource": "all-ports-open-sg (sg-0e703468b7e0b0874) [us-west-2]",
+        "type": "Weak Security Rule",
+        "issue": "Weak IP range 0.0.0.0/0",
+        "severity": "MEDIUM",
+        "impact": "Security improvement recommended"
+    }
+]

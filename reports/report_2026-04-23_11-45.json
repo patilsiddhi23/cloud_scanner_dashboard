@@ -1,0 +1,8 @@
+[
+  {
+    "resource": "open-ssh-sg-demo",
+    "type": "Network",
+    "issue": "Port 22 open to world",
+    "severity": "CRITICAL"
+  }
+]

@@ -1,0 +1,14 @@
+[
+  {
+    "resource": "public-acl-bucket-demo-123",
+    "type": "S3",
+    "issue": "Public Access via ACL",
+    "severity": "HIGH"
+  },
+  {
+    "resource": "AdminLikePolicy",
+    "type": "IAM",
+    "issue": "Wildcard permissions",
+    "severity": "CRITICAL"
+  }
+]
